@@ -34,7 +34,7 @@ public:
         _button = button;
         button->setPosition(map->getSize() / 2);
         button->setResAnim(resourcesUI.getResAnim("button"));
-        button->attachTo(map);
+        button->addTo(map);
         button->setAnchor(0.5f, 0.5f);
         button->addEventListener(TouchEvent::CLICK, CLOSURE(this, &TestSliding::testClick));
 
@@ -46,11 +46,11 @@ public:
         title->setY(-50);
         title->setFont(resourcesUI.getResFont("big")->getFont());
         title->setColor(Color::Black);
-        title->attachTo(map);
+        title->addTo(map);
 
         sliding->setContent(map);
         sliding->setPosition(getSize() / 2 - sliding->getSize() / 2);
-        sliding->attachTo(content);
+        sliding->addTo(content);
 
         _sliding = sliding;
 

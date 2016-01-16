@@ -28,7 +28,7 @@ public:
 
 
         _sprite = new Sprite();
-        _sprite->attachTo(content);
+        _sprite->addTo(content);
         _sprite->setAnchor(0.5f, 0.5f);
         _sprite->setResAnim(resources.getResAnim("anim"));
         _sprite->setPosition(getWidth() / 2.0f, getHeight() / 2);

@@ -20,7 +20,7 @@ void example_init()
 
     spSprite bg = new Sprite;
     bg->setResAnim(res.getResAnim("bg"));
-    bg->attachTo(getStage());
+    bg->addTo(getStage());
 
     board.init(6, 5);
 

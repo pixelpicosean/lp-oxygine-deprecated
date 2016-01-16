@@ -34,7 +34,7 @@ public:
             spSprite sprite = new DraggableSprite;
             sprite->setPosition(pos[i]);
             sprite->setResAnim(resources.getResAnim("batterfly"));
-            sprite->attachTo(content);
+            sprite->addTo(content);
 
             float angle = scalar::randFloat(0, (float)MATH_PI * 2);
             sprite->setRotation(angle);
@@ -49,7 +49,7 @@ public:
         }
 
         contacts = new Actor;
-        contacts->attachTo(content);
+        contacts->addTo(content);
         contacts->setPriority(10000);
         contacts->setInputChildrenEnabled(false);
     }
@@ -76,7 +76,7 @@ public:
                     c->addTween(Actor::TweenAlpha(0), 300)->setDetachActor(true);
                     Vector2 pos = convert_local2global(a, content, contact);
                     c->setPosition(pos);
-                    c->attachTo(contacts);
+                    c->addTo(contacts);
                 }
             }
         }
@@ -120,7 +120,7 @@ public:
         basket = new Sprite;
         basket->setName("basket");
         basket->setResAnim(resources.getResAnim("batterfly"));
-        basket->attachTo(content);
+        basket->addTo(content);
         basket->setAnchor(0.5f, 0.5f);
         basket->setX(content->getWidth() * 3 / 4);
         basket->setY(content->getHeight() / 2);
@@ -128,7 +128,7 @@ public:
         ball = new Sprite;
         ball->setName("ball");
         ball->setResAnim(resources.getResAnim("batterfly"));
-        ball->attachTo(content);
+        ball->addTo(content);
         ball->setAnchor(0.5f, 0.5f);
         ball->setX(content->getWidth() * 1 / 4);
         ball->setY(content->getHeight() / 2);
@@ -138,7 +138,7 @@ public:
         content->addEventListener(TouchEvent::TOUCH_UP, CLOSURE(this, &Drag2Test::touchUp));
 
         txt = new TextField;
-        txt->attachTo(content);
+        txt->addTo(content);
         txt->setVAlign(TextStyle::VALIGN_MIDDLE);
         txt->setHAlign(TextStyle::HALIGN_MIDDLE);
         txt->setPosition(getSize() / 2);
@@ -200,7 +200,7 @@ public:
             dragging = ball->clone();
 
             dragging->setName("dragging");
-            dragging->attachTo(ball->getParent());
+            dragging->addTo(ball->getParent());
             dragging->setColor(Color::Red);
             dragging->setAnchor(0, 0);
             dragging->setInputEnabled(false);

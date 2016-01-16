@@ -9,7 +9,7 @@ GameMenu::GameMenu()
 {
     //initialize dialog background
     _bg = initActor(new Box9Sprite,
-                    arg_attachTo = _view,
+                    arg_addTo = _view,
                     arg_resAnim = res::ui.getResAnim("box9"),
                     arg_pos = _view->getSize() / 2 - Vector2(300, 300) / 2);
 
@@ -18,7 +18,7 @@ GameMenu::GameMenu()
 
     //create holder for button and text
     _buttons = new Actor;
-    _buttons->attachTo(_view);
+    _buttons->addTo(_view);
 
     float y = _view->getHeight() / 2 - 80;
 
@@ -37,7 +37,7 @@ GameMenu::GameMenu()
                                    arg_htmlText = "Paused<div c='00FF00'>!</div>",
                                    arg_x = _view->getWidth() / 2,
                                    arg_y = y,
-                                   arg_attachTo = _buttons,
+                                   arg_addTo = _buttons,
                                    arg_alpha = 128);
 
     //animate with infinity loops "Paused!" text
@@ -61,7 +61,7 @@ GameMenu::GameMenu()
         spMyButton button = initActor(new MyButton,
                                       arg_resAnim = frame,
                                       arg_anchor = Vector2(0.5f, 0.5f),
-                                      arg_attachTo = _buttons);
+                                      arg_addTo = _buttons);
 
         button->setX(_view->getWidth() / 2);
         button->setY(y);

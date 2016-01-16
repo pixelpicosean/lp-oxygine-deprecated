@@ -96,7 +96,7 @@ public:
         btn->setResAnim(gameResources.getResAnim("button"));
         btn->setX(getWidth() - btn->getWidth() - 3);
         btn->setY(3);
-        btn->attachTo(this);
+        btn->addTo(this);
         btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &MainActor::showHideDebug));
 
         addEventListener(TouchEvent::CLICK, CLOSURE(this, &MainActor::click));
@@ -156,7 +156,7 @@ public:
 
         _debugDraw = new Box2DDraw;
         _debugDraw->SetFlags(b2Draw::e_shapeBit | b2Draw::e_jointBit | b2Draw::e_pairBit | b2Draw::e_centerOfMassBit);
-        _debugDraw->attachTo(this);
+        _debugDraw->addTo(this);
         _debugDraw->setWorld(SCALE, _world);
         _debugDraw->setPriority(1);
     }
@@ -168,7 +168,7 @@ public:
         if (event->target.get() == this)
         {
             spCircle circle = new Circle(_world, te->localPosition);
-            circle->attachTo(this);
+            circle->addTo(this);
         }
 
         if (event->target->getUserData())
@@ -187,7 +187,7 @@ public:
             Vector2 local = actor->global2local(te->localPosition);
             sprite->setPosition(local);
             sprite->setAnchor(Vector2(0.5f, 0.5f));
-            sprite->attachTo(actor);
+            sprite->addTo(actor);
         }
     }
 };

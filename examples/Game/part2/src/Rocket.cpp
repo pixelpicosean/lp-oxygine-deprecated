@@ -64,7 +64,7 @@ void Rocket::explode()
 
     //create explode sprite
     spSprite anim = new Sprite;
-    anim->attachTo(_game);
+    anim->addTo(_game);
     anim->setBlendMode(blend_add);
     anim->setPosition(_view->getPosition());
     anim->setAnchor(Vector2(0.5f, 0.5f));

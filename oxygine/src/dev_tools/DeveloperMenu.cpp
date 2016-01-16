@@ -83,7 +83,7 @@ namespace oxygine
                                    arg_x = offset / 2,
                                    arg_anchor = Vector2(0.5f, 0.5f),
                                    arg_resAnim = _resSystem->getResAnim("remove"),
-                                   arg_attachTo = top);
+                                   arg_addTo = top);
         close->addEventListener(TouchEvent::CLICK, CLOSURE(this, &DeveloperMenu::close));
 
 
@@ -95,12 +95,12 @@ namespace oxygine
                                       arg_width = top->getWidth(),
                                       arg_height = top->getHeight(),
                                       arg_input = false,
-                                      arg_attachTo = top);
+                                      arg_addTo = top);
 
         //title->setSize(close->getTextRect().size);
         title->addEventListener(TouchEvent::CLICK, CLOSURE(this, &DeveloperMenu::close));
 
-        data->attachTo(body);
+        data->addTo(body);
     }
 
 

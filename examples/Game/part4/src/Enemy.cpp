@@ -8,7 +8,7 @@ void Enemy::_init()
 
     spSprite sprite = new Sprite;
     sprite->setResAnim(res::ui.getResAnim("asteroid"));
-    sprite->attachTo(_view);
+    sprite->addTo(_view);
     sprite->setAnchor(Vector2(0.5f, 0.5f));
 
     //it random scale and rotation

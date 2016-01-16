@@ -22,22 +22,22 @@ void Game::init()
     //create background
     spSprite sky = new Sprite;
     sky->setResAnim(res::ui.getResAnim("sky"));
-    sky->attachTo(this);
+    sky->addTo(this);
 
     //create separate layer for elements virtual joystick and other UI in future
     _ui = new Actor;
-    _ui->attachTo(this);
+    _ui->addTo(this);
     //it would be higher than other actors with default priority = 0
     _ui->setPriority(1);
 
     //create virtual joystick and attach it to UI
     _move = new Joystick;
-    _move->attachTo(_ui);
+    _move->addTo(_ui);
     _move->setY(getHeight() - _move->getHeight());
 
     //create virtual joystick and attach it to UI
     _fire = new Joystick;
-    _fire->attachTo(_ui);
+    _fire->addTo(_ui);
     _fire->setX(getWidth() - _fire->getWidth());
     _fire->setY(getHeight() - _fire->getHeight());
 

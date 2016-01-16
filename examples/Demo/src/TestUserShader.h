@@ -94,7 +94,7 @@ public:
 
         _sprite = new ShaderSprite;
         _sprite->setResAnim(resources.getResAnim("bg"));
-        _sprite->attachTo(content);
+        _sprite->addTo(content);
         _sprite->addTween(ShaderSprite::TweenVal(Vector4(1, 1, 1, 0)), 5000, -1, true);
         _sprite->setShaderProgram(_shaderInvert);
 

@@ -21,7 +21,7 @@ public:
 
         sprite = new Sprite;
         sprite->setResAnim(resources.getResAnim("flower"));
-        sprite->attachTo(content);
+        sprite->addTo(content);
         sprite->setAnchor(0.5f, 0.5f);
         sprite->setPosition(content->getSize() / 2);
 
@@ -30,7 +30,7 @@ public:
         sprite->setInputChildrenEnabled(false);
 
         txt = new TextField;
-        txt->attachTo(content);
+        txt->addTo(content);
         txt->setVAlign(TextStyle::VALIGN_BOTTOM);
         txt->setHAlign(TextStyle::HALIGN_MIDDLE);
         txt->setX(getWidth() / 2);
@@ -57,6 +57,6 @@ public:
         sp->setAnchor(0.5f, 0.5f);
         sp->setScale(0.5f);
         sp->setPosition(te->localPosition);
-        sp->attachTo(sprite);
+        sp->addTo(sprite);
     }
 };

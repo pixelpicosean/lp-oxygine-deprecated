@@ -88,7 +88,7 @@ namespace oxygine
                         arg_resAnim = resSystem->getResAnim(anim),
                         arg_y = 1,
                         arg_name = name,
-                        arg_attachTo = this);
+                        arg_addTo = this);
         x = x - btn->getWidth();
         btn->setX(x);
         btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &DebugActor::_btnClicked));

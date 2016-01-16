@@ -11,7 +11,7 @@ void Unit::init(const Vector2& pos, Game* game)
     //initialize base
     _game = game;
     _view = new Actor;
-    _view->attachTo(game);
+    _view->addTo(game);
     _view->setPosition(pos);
 
     //adds to global units list

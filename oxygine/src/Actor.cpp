@@ -818,13 +818,13 @@ namespace oxygine
         setParent(actor.get(), this);
     }
 
-    void Actor::attachTo(spActor parent)
+    void Actor::addTo(spActor parent)
     {
         OX_ASSERT(parent != this);
-        attachTo(parent.get());
+        addTo(parent.get());
     }
 
-    void Actor::attachTo(Actor* parent)
+    void Actor::addTo(Actor* parent)
     {
         OX_ASSERT(parent != this);
         OX_ASSERT(parent);
@@ -1373,7 +1373,7 @@ namespace oxygine
         if (newParent != mutualParent)
             pos = convert_global2local(newParent, mutualParent, pos);
         actor->setPosition(pos);
-        actor->attachTo(newParent);
+        actor->addTo(newParent);
     }
 
 

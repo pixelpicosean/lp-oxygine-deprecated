@@ -14,7 +14,7 @@ public:
     TestMask(): _lastSnow(0)
     {
         spSprite sp = new Sprite;
-        sp->attachTo(content);
+        sp->addTo(content);
         sp->setResAnim(resources.getResAnim("sky"));
 
         _mask = new Sprite;
@@ -26,14 +26,14 @@ public:
         _mask->setAnchor(0.5f, 0.5f);
         _mask->setResAnim(resources.getResAnim("mask"));
         _mask->setVisible(true);
-        _mask->attachTo(content);
+        _mask->addTo(content);
 
         _mask->addTween(Actor::TweenRotation(MATH_PI * 2), 15000, -1, true);
         _mask->addTween(Actor::TweenX(content->getWidth() - 100), 10000, -1, true);
         _mask->addTween(Actor::TweenY(content->getHeight() - 50), 12000, -1, true);
 
         _masked = new MaskedSprite;
-        _masked->attachTo(content);
+        _masked->addTo(content);
 
         _masked->setMask(_mask, true);
 
@@ -54,7 +54,7 @@ public:
         style.multiline = true;
 
         spTextField text = new TextField();
-        text->attachTo(_masked);
+        text->addTo(_masked);
         text->setPosition(content->getSize() / 2);
         text->setText("Oxygine. Masked sky demo");
         text->setStyle(style);
@@ -125,7 +125,7 @@ public:
             snow->setScale(scalar::randFloat(0.4f, 1.0f));
             snow->setX(scalar::randFloat(0, content->getWidth()));
             snow->setY(-50);
-            snow->attachTo(_masked);
+            snow->addTo(_masked);
 
             snow->addTween(Actor::TweenY(content->getHeight() + 50), 6000)->setDetachActor(true);
             snow->addTween(Actor::TweenRotation(scalar::randFloat(0, MATH_PI * 2)), 5000);

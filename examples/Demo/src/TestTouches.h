@@ -19,7 +19,7 @@ public:
         orange->setName(name);
         orange->setSize(size);
         orange->setPosition(pos);
-        orange->attachTo(content);
+        orange->addTo(content);
         //orange->setAlpha(200);
         orange->addEventListener(TouchEvent::OVER, CLOSURE(this, &TestTouches::onOver));
         orange->addEventListener(TouchEvent::OUT, CLOSURE(this, &TestTouches::onOver));
@@ -33,7 +33,7 @@ public:
         tf->setName("state1");
         tf->setX(5);
         tf->setY(5);
-        tf->attachTo(orange);
+        tf->addTo(orange);
 
         tf = new TextField;
         tf->setText("");
@@ -41,7 +41,7 @@ public:
         tf->setName("state2");
         tf->setX(35);
         tf->setY(5);
-        tf->attachTo(orange);
+        tf->addTo(orange);
 
         tf = new TextField;
         tf->setText("");
@@ -51,7 +51,7 @@ public:
         tf->setY(25);
         tf->setMultiline(true);
         tf->setWidth(orange->getWidth());
-        tf->attachTo(orange);
+        tf->addTo(orange);
 
         return orange;
     }
@@ -105,16 +105,16 @@ public:
 
 
         spSprite Orange = createRect("Orange", Color::Orange, Vector2(200, 200), Vector2(300, 300));
-        Orange->attachTo(content);
+        Orange->addTo(content);
 
         spSprite Green = createRect("Green", Color::Green, Vector2(100, 25), Vector2(100, 150));
-        Green->attachTo(Orange);
+        Green->addTo(Orange);
 
         spSprite Beige = createRect("Beige", Color::Beige, Vector2(150, 150), Vector2(250, 100));
-        Beige->attachTo(Orange);
+        Beige->addTo(Orange);
 
         spSprite LightGreen = createRect("LightGreen", Color::LightGreen, Vector2(180, -50), Vector2(50, 200));
-        LightGreen->attachTo(Beige);
+        LightGreen->addTo(Beige);
 
 
         spActor target = Orange;
@@ -127,7 +127,7 @@ public:
     spTextField createTF(const Color& c)
     {
         spTextField tf = new TextField;
-        tf->attachTo(content);
+        tf->addTo(content);
         tf->setWidth(300);
         tf->setColor(c);
         tf->setX(content->getWidth() - tf->getWidth());

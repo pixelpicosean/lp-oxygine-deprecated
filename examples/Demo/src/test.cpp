@@ -24,7 +24,7 @@ void Test::init()
     spWebImage sp = new WebImage;
     sp->load("http://oxygine.org/test/logo.png");
     sp->setInputEnabled(false);
-    sp->attachTo(getStage());
+    sp->addTo(getStage());
     sp->setPriority(10);
     sp->setAlpha(128);
     sp->setSize(150, 107);
@@ -83,7 +83,7 @@ spButton createButtonHelper(spButton button, const std::string& txt, EventCallba
     //create Actor with Text and it to button as child
     spTextField text = createText(txt);
     text->setSize(button->getSize());
-    text->attachTo(button);
+    text->addTo(button);
 
     return button;
 }
@@ -125,7 +125,7 @@ spButton Test::addButton(std::string id, std::string txt)
     spButton button = createButtonHelper(new Button, txt, CLOSURE(this, &Test::_clicked));
     initActor(button.get(),
               arg_name = id,
-              arg_attachTo = ui,
+              arg_addTo = ui,
               arg_anchor = Vector2(0.5f, 0.0f),
               arg_pos = Vector2(_x, _y));
     button->setColor(_color);
@@ -147,7 +147,7 @@ void Test::addToggle(std::string id, const toggle* t, int num)
     spButton button = createButtonHelper(new Toggle(t, num), t[0].text, CLOSURE(this, &Test::_toggleClicked));
     initActor(button.get(),
               arg_name = id,
-              arg_attachTo = ui,
+              arg_addTo = ui,
               arg_anchor = Vector2(0.5f, 0.0f),
               arg_pos = Vector2(_x, _y));
 
@@ -229,11 +229,11 @@ void Test::notify(std::string txt, int time)
     tq->addDoneCallback(CLOSURE(this, &Test::notifyDone));
 
     sprite->addTween(tq);
-    sprite->attachTo(ui);
+    sprite->addTo(ui);
     sprite->setPosition(2.0f, getHeight() - 100.0f - N * sprite->getHeight() * 1.1f);
 
     spTextField text = createText(txt);
-    text->attachTo(sprite);
+    text->addTo(sprite);
     text->setColor(Color::Black);
     text->setPosition(sprite->getSize() / 2);
 }

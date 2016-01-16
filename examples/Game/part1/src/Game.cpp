@@ -16,7 +16,7 @@ void Game::init()
     //create background
     spSprite sky = new Sprite;
     sky->setResAnim(res::ui.getResAnim("sky"));
-    sky->attachTo(this);
+    sky->addTo(this);
 
     //create player ship
     _player = new Player;
@@ -24,7 +24,7 @@ void Game::init()
 
     //create virtual joystick
     _move = new Joystick;
-    _move->attachTo(this);
+    _move->addTo(this);
     _move->setY(getHeight() - _move->getHeight());
 }
 

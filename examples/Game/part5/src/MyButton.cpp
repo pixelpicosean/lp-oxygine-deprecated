@@ -41,7 +41,7 @@ void MyButton::setText(const string& txt)
         _text = initActor(new TextField,
                           arg_style = style,
                           arg_size = getSize(),
-                          arg_attachTo = this);
+                          arg_addTo = this);
     }
 
     _text->setText(txt);

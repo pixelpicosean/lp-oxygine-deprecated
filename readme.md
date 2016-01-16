@@ -1,11 +1,11 @@
-# BUILD AND RUN  
+# BUILD AND RUN
 See **oxygine-framework/readme/** folder. It has insructions how to build and run oxygine on different platforms.
 
 # Online documentation available at
 https://bitbucket.org/oxygine/oxygine-framework/wiki/Home
 
 
-# Oxygine is C++ engine for 2D mobile games. 
+# Oxygine is C++ engine for 2D mobile games.
 One more shell around OpenGL/D3D API you would say? No, this is a set of classes and tools to create a game according to your requirements.
 
 In the basis of the engine there is a scene graph, that is similar to Flash one. To be short, You can call this as Flash for C++, but more comfortable and way faster. Initially it was developed for mobile platforms (iOS, Android), but can be also used for PC games.
@@ -32,18 +32,18 @@ Source code is available under MIT license (use for free anywhere).
 		//create sprite and display it
 		spSprite sprite = new Sprite();
 		sprite->setResAnim(gameResources.getResAnim("anim"));
-		sprite->attachTo(getStage());
+		sprite->addTo(getStage());
 		sprite->setScale(0.5f);
-		
+
 		//run animation tween
 		sprite->addTween(TweenAnim(gameResources.getResAnim("anim2")), duration, loops);
-		
+
 		//run position tween
 		sprite->addTween(Sprite::TweenPosition(x, y), duration, loops);
-		
+
 		//handle events
 		sprite->addEventListener(TouchEvent::CLICK, clickHandler);
- 	```		     
+ 	```
 
 ##Features:
 - Programming language is C++.
@@ -54,7 +54,7 @@ Source code is available under MIT license (use for free anywhere).
 - Effective and flexible work with resources, very close to your game.
 - Components of the engine have weak links between each other. Can be used together, separately or not at all.
 - Fast creation and deletion of objects using memory pools for all engine objects.
-- SceneGraph is somewhat similar to Flash ([diagrams with inheritance models](https://dl.dropbox.com/u/12679384/oxygine/actor_inheritance.png)). It is built on smart pointers (analogue boost:intrusive_ptr). No need to hassle with memory control, memory leaks. 
+- SceneGraph is somewhat similar to Flash ([diagrams with inheritance models](https://dl.dropbox.com/u/12679384/oxygine/actor_inheritance.png)). It is built on smart pointers (analogue boost:intrusive_ptr). No need to hassle with memory control, memory leaks.
 - Debug Tools ([screenshot](https://dl.dropboxusercontent.com/u/12679384/oxygine/debug_tools.gif)). Tree Inspector is “Visual profiler” for Scene Graph. Right in the game you can view the graph and different branches to analyze and errors search. “Textures Inspector” shows you currently loaded textures into memory ([screenshot](https://dl.dropbox.com/u/12679384/oxygine/textures_inspector.png))
 - Render to texture.
 - Resources description is stored in xml file. It has multiple different parameters: you can add your own resources types, format can be set, in which you will store the texture(atlas) in memory, number of columns and rows for animation, etc. Any resource can have user-data attributes.

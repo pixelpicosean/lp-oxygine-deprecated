@@ -51,7 +51,7 @@ public:
         //create TextField Actor
         spTextField text = new TextField();
         //attach it as child to button
-        text->attachTo(button);
+        text->addTo(button);
         //centered in button
         text->setPosition(button->getSize() / 2);
 

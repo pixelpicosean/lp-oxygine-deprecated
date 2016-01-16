@@ -162,7 +162,7 @@ public:
         spr->setScale(2);
         spr->setAnchor(0.5f, 0.5f);
         spr->setPosition(content->getSize() / 2);
-        spr->attachTo(lightning);
+        spr->addTo(lightning);
 
 
         spSprite light = new Sprite;

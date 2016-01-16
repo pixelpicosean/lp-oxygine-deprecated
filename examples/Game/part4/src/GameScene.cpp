@@ -11,7 +11,7 @@ GameScene::GameScene()
     //create game actor
     _game = new Game;
     _game->init();
-    _game->attachTo(_view);
+    _game->addTo(_view);
 
     //Game Actor would have own Clock.
     //clock is internal time of each Actor
@@ -23,7 +23,7 @@ GameScene::GameScene()
     spActor btn = initActor(new MyButton,
                             arg_resAnim = res::ui.getResAnim("menu"),
                             arg_anchor = Vector2(0.5f, 0.5f),
-                            arg_attachTo = _view);
+                            arg_addTo = _view);
 
     //align it to top right
     btn->setX(_view->getWidth() - btn->getWidth() / 2);

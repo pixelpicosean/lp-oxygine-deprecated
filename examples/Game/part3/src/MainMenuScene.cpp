@@ -14,20 +14,20 @@ MainMenuScene::MainMenuScene()
     //create background
     spSprite sky = new Sprite;
     sky->setResAnim(res::ui.getResAnim("bg"));
-    sky->attachTo(_view);
+    sky->addTo(_view);
 
     /*
     'initActor' is syntax sugar for
 
     spSprite logo = new Sprite;
     logo->setResAnim(res::ui.getResAnim("logo2")),
-    logo->attachTo(_view);
+    logo->addTo(_view);
     */
 
     //create logo
     spSprite logo = initActor(new Sprite,
                               arg_resAnim = res::ui.getResAnim("logo2"),
-                              arg_attachTo = _view);
+                              arg_addTo = _view);
     logo->setPosition(_view->getSize() - logo->getSize());
 
 
@@ -36,7 +36,7 @@ MainMenuScene::MainMenuScene()
     btn->setResAnim(res::ui.getResAnim("play")),
     btn->setAnchor(Vector2(0.5f, 0.5f));
     btn->setPosition(_view->getSize()/2);
-    btn->attachTo(_view);
+    btn->addTo(_view);
     */
 
     //create play button at center
@@ -45,7 +45,7 @@ MainMenuScene::MainMenuScene()
                              arg_resAnim = res::ui.getResAnim("play"),
                              arg_anchor = Vector2(0.5f, 0.5f),
                              arg_pos = _view->getSize() / 2,
-                             arg_attachTo = _view);
+                             arg_addTo = _view);
 
     //handle click to button
     btn->addEventListener(TouchEvent::CLICK, CLOSURE(this, &MainMenuScene::onEvent));
@@ -56,7 +56,7 @@ MainMenuScene::MainMenuScene()
                     arg_name = "exit",
                     arg_resAnim = res::ui.getResAnim("menu"),
                     arg_anchor = Vector2(0.5f, 0.5f),
-                    arg_attachTo = _view);
+                    arg_addTo = _view);
 
     //align it to top right
     btn->setX(_view->getWidth() - btn->getWidth() / 2);

@@ -11,7 +11,7 @@ void Unit::init(Game* game)
     //initialize base
     _game = game;
     _view = new Actor;
-    _view->attachTo(game);
+    _view->addTo(game);
 
     //virtual method was overload in Player
     _init();

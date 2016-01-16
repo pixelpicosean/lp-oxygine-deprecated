@@ -16,12 +16,12 @@ void Player::_init()
 
     _ship = new Sprite;
     _ship->setResAnim(res::ui.getResAnim("ship"));
-    _ship->attachTo(_view);
+    _ship->addTo(_view);
     _ship->setAnchor(Vector2(0.5f, 0.5f));
 
     _engine = new Sprite;
     _engine->setResAnim(res::ui.getResAnim("shipengine"));
-    _engine->attachTo(_ship);
+    _engine->addTo(_ship);
     //animate engine's fire
     _engine->addTween(Sprite::TweenColor(Color::Red), 500, -1, true);
     //by default it is hidden

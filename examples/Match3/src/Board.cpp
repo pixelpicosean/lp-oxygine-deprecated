@@ -223,7 +223,7 @@ void Board::update(const UpdateState& us)
                     spActor view = fallJewel->getView();
 
                     view->setPosition(Vector2(newPos.x, last_y));
-                    view->attachTo(_view);
+                    view->addTo(_view);
 
                 }
 

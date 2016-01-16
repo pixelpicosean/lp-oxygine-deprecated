@@ -53,7 +53,7 @@ public:
     {
         sprite = new Sprite;
         sprite->setResAnim(resources.getResAnim("flower"));
-        sprite->attachTo(content);
+        sprite->addTo(content);
         //sprite->setAnchor(0.5f, 0.5f);
         sprite->setPosition(content->getSize() / 2 - sprite->getSize() / 2);
 

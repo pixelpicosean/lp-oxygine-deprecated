@@ -92,7 +92,7 @@ public:
 
         spShaderTextField txt = new ShaderTextField;
         //spTextField txt = new TextField;
-        txt->attachTo(content);
+        txt->addTo(content);
         _txt = txt;
 
         TextStyle st;

@@ -31,7 +31,7 @@ public:
         atlas->load();
 
         spSprite sp = new Sprite;
-        sp->attachTo(content);
+        sp->addTo(content);
         sp->setResAnim(res);
     }
 

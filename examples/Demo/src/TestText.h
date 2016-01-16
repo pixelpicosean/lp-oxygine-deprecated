@@ -44,7 +44,7 @@ public:
         addButton("prev", "Prev Test");
 
         textDetails = new TextField;
-        textDetails->attachTo(ui);
+        textDetails->addTo(ui);
         textDetails->setSize(Vector2(300, 0));
         textDetails->setPosition(200.0f, getStage()->getHeight() - 10);
 
@@ -56,7 +56,7 @@ public:
         textDetails->setStyle(st);
 
         bg = new ColorRectSprite();
-        bg->attachTo(content);
+        bg->addTo(content);
         bg->setColor(Color(64, 64, 64, 255));
 
         /*
@@ -65,11 +65,11 @@ public:
         */
 
         spriteTextRect = new ColorRectSprite();
-        spriteTextRect->attachTo(bg);
+        spriteTextRect->addTo(bg);
         spriteTextRect->setColor(Color(Color::Red, 80));
 
         text = new TextField;
-        text->attachTo(bg);
+        text->addTo(bg);
 
         Vector2 size(420, 300);
 

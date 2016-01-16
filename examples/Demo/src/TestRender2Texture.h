@@ -20,7 +20,7 @@ public:
         texture->init((int)size.x, (int)size.y, TF_R8G8B8A8, true);
 
         preview = new Sprite;
-        preview->attachTo(content);
+        preview->addTo(content);
 
 
         AnimationFrame frame;

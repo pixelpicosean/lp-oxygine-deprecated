@@ -40,7 +40,7 @@ namespace oxygine
 
             spColorRectSprite rect = initActor(new ColorRectSprite,
                                                arg_color = Color(Color::White, 255),
-                                               arg_attachTo = this);
+                                               arg_addTo = this);
 
             rect->addTween(Sprite::TweenColor(Color(Color::White, 0)), 4000, -1, true);
 
@@ -59,7 +59,7 @@ namespace oxygine
                                          arg_vAlign = TextStyle::VALIGN_TOP,
                                          arg_hAlign = TextStyle::HALIGN_LEFT,
                                          arg_multiline = true,
-                                         arg_attachTo = rect,
+                                         arg_addTo = rect,
                                          arg_htmlText = txt
                                         );
 
@@ -93,7 +93,7 @@ namespace oxygine
                                      arg_vAlign = TextStyle::VALIGN_TOP,
                                      arg_hAlign = TextStyle::HALIGN_LEFT,
                                      arg_multiline = true,
-                                     arg_attachTo = slide
+                                     arg_addTo = slide
                                     );
 
 
