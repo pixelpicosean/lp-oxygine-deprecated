@@ -36,7 +36,7 @@ void Test::init()
 void Test::free()
 {
     resourcesUI.free();
-    instance->detach();
+    instance->remove();
     instance = 0;
     HttpRequestTask::release();
 }
@@ -193,7 +193,7 @@ void Test::_toggleClicked(Event* event)
 
 void Test::back(Event* event)
 {
-    detach();
+    remove();
     instance->setVisible(true);
 }
 

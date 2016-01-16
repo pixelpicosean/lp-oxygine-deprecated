@@ -10,7 +10,7 @@ void Scene::changeScene(spScene next)
 {
     //hide current scene
     spTween tween = _view->addTween(Actor::TweenAlpha(0), 300);
-    //detach when done
+    //remove when done
     tween->setDetachActor(true);
 
     //show next scene

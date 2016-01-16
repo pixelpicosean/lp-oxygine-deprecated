@@ -135,7 +135,7 @@ namespace oxygine
         void setTwoSides(bool ts) { _twoSides = ts; }
 
         /**delete actor from parent node when tween done*/
-        void setDetachActor(bool detach) { _detach = detach; }
+        void setDetachActor(bool remove) { _remove = remove; }
 
         /**immediately completes tween, calls doneCallback and mark tween as completed and removes self from Actor. If tween has infinity loops (=-1) then do nothing*/
         virtual void complete(timeMS deltaTime = std::numeric_limits<int>::max() / 2);
@@ -177,7 +177,7 @@ namespace oxygine
         bool _twoSides;
 
         float _percent;
-        bool _detach;
+        bool _remove;
 
         EventCallback _cbDone;
         Actor* _client;

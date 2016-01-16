@@ -5,25 +5,25 @@
  *      Pthreads-win32 - POSIX Threads Library for Win32
  *      Copyright(C) 1998 John E. Bossom
  *      Copyright(C) 1999,2005 Pthreads-win32 contributors
- * 
+ *
  *      Contact Email: rpj@callisto.canberra.edu.au
- * 
+ *
  *      The current list of contributors is contained
  *      in the file CONTRIBUTORS included with the source
  *      code distribution. The list can also be seen at the
  *      following World Wide Web location:
  *      http://sources.redhat.com/pthreads-win32/contributors.html
- * 
+ *
  *      This library is free software; you can redistribute it and/or
  *      modify it under the terms of the GNU Lesser General Public
  *      License as published by the Free Software Foundation; either
  *      version 2 of the License, or (at your option) any later version.
- * 
+ *
  *      This library is distributed in the hope that it will be useful,
  *      but WITHOUT ANY WARRANTY; without even the implied warranty of
  *      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *      Lesser General Public License for more details.
- * 
+ *
  *      You should have received a copy of the GNU Lesser General Public
  *      License along with this library in the file COPYING.LIB;
  *      if not, write to the Free Software Foundation, Inc.,
@@ -609,7 +609,7 @@ typedef struct pthread_barrierattr_t_ * pthread_barrierattr_t;
 
 enum {
 /*
- * pthread_attr_{get,set}detachstate
+ * pthread_attr_{get,set}removestate
  */
   PTHREAD_CREATE_JOINABLE       = 0,  /* Default */
   PTHREAD_CREATE_DETACHED       = 1,
@@ -894,8 +894,8 @@ PTW32_DLLPORT int PTW32_CDECL pthread_attr_init (pthread_attr_t * attr);
 
 PTW32_DLLPORT int PTW32_CDECL pthread_attr_destroy (pthread_attr_t * attr);
 
-PTW32_DLLPORT int PTW32_CDECL pthread_attr_getdetachstate (const pthread_attr_t * attr,
-                                         int *detachstate);
+PTW32_DLLPORT int PTW32_CDECL pthread_attr_getremovestate (const pthread_attr_t * attr,
+                                         int *removestate);
 
 PTW32_DLLPORT int PTW32_CDECL pthread_attr_getstackaddr (const pthread_attr_t * attr,
                                        void **stackaddr);
@@ -903,8 +903,8 @@ PTW32_DLLPORT int PTW32_CDECL pthread_attr_getstackaddr (const pthread_attr_t * 
 PTW32_DLLPORT int PTW32_CDECL pthread_attr_getstacksize (const pthread_attr_t * attr,
                                        size_t * stacksize);
 
-PTW32_DLLPORT int PTW32_CDECL pthread_attr_setdetachstate (pthread_attr_t * attr,
-                                         int detachstate);
+PTW32_DLLPORT int PTW32_CDECL pthread_attr_setremovestate (pthread_attr_t * attr,
+                                         int removestate);
 
 PTW32_DLLPORT int PTW32_CDECL pthread_attr_setstackaddr (pthread_attr_t * attr,
                                        void *stackaddr);
@@ -944,7 +944,7 @@ PTW32_DLLPORT int PTW32_CDECL pthread_create (pthread_t * tid,
                             void *(PTW32_CDECL *start) (void *),
                             void *arg);
 
-PTW32_DLLPORT int PTW32_CDECL pthread_detach (pthread_t tid);
+PTW32_DLLPORT int PTW32_CDECL pthread_remove (pthread_t tid);
 
 PTW32_DLLPORT int PTW32_CDECL pthread_equal (pthread_t t1,
                            pthread_t t2);
@@ -1116,7 +1116,7 @@ PTW32_DLLPORT int PTW32_CDECL pthread_getschedparam (pthread_t thread,
                                    struct sched_param *param);
 
 PTW32_DLLPORT int PTW32_CDECL pthread_setconcurrency (int);
- 
+
 PTW32_DLLPORT int PTW32_CDECL pthread_getconcurrency (void);
 
 /*
@@ -1185,9 +1185,9 @@ PTW32_DLLPORT unsigned __int64 PTW32_CDECL pthread_getunique_np(pthread_t thread
  * the lib rather than load the DLL at run-time.
  */
 PTW32_DLLPORT int PTW32_CDECL pthread_win32_process_attach_np(void);
-PTW32_DLLPORT int PTW32_CDECL pthread_win32_process_detach_np(void);
+PTW32_DLLPORT int PTW32_CDECL pthread_win32_process_remove_np(void);
 PTW32_DLLPORT int PTW32_CDECL pthread_win32_thread_attach_np(void);
-PTW32_DLLPORT int PTW32_CDECL pthread_win32_thread_detach_np(void);
+PTW32_DLLPORT int PTW32_CDECL pthread_win32_thread_remove_np(void);
 
 /*
  * Features that are auto-detected at load/run time.

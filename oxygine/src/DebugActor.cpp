@@ -202,7 +202,7 @@ namespace oxygine
 
         spActor inspector = _getStage()->getChild(DeveloperMenu::getDefaultName(), ep_ignore_error);
         if (inspector)
-            inspector->detach();
+            inspector->remove();
         else
         {
             spDeveloperMenu dm = new DeveloperMenu();

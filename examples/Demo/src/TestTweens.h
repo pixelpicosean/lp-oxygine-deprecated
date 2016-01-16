@@ -71,7 +71,7 @@ public:
     void updateEase()
     {
         if (_easeGraph)
-            _easeGraph->detach();
+            _easeGraph->remove();
 
         _easeGraph = createEaseTest(_ease);
         _easeGraph->setPriority(-1);

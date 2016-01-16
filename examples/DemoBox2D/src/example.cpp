@@ -135,7 +135,7 @@ public:
                     body->SetUserData(0);
                     _world->DestroyBody(body);
 
-                    actor->detach();
+                    actor->remove();
                 }
             }
 
@@ -149,7 +149,7 @@ public:
         te->stopsImmediatePropagation = true;
         if (_debugDraw)
         {
-            _debugDraw->detach();
+            _debugDraw->remove();
             _debugDraw = 0;
             return;
         }

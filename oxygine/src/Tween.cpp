@@ -10,7 +10,7 @@ namespace oxygine
 		_loopsDone(0),
         _percent(0),
         _status(status_not_started),
-        _elapsed(0), _twoSides(false), _ease(ease_linear), _detach(false), _delay(0), _client(0)
+        _elapsed(0), _twoSides(false), _ease(ease_linear), _remove(false), _delay(0), _client(0)
     {
 
     }
@@ -48,7 +48,7 @@ namespace oxygine
 		_loops = opt._loops;
 		_twoSides = opt._twoSides;
 		_delay = opt._delay;
-		_detach = opt._detach;
+		_remove = opt._remove;
 
 		if (_duration <= 0)
 		{
@@ -182,9 +182,9 @@ namespace oxygine
     {
         _done(actor, us);
 
-        if (_detach)
+        if (_remove)
         {
-            actor.detach();
+            actor.remove();
         }
 
         TweenEvent ev(this, &us);

@@ -16,7 +16,7 @@ namespace oxygine
     {
         /*
         if (_pages)
-            _pages->detach();
+            _pages->remove();
         _pages = 0;
 
         removeChildren();
@@ -171,7 +171,7 @@ namespace oxygine
         b->setRow(b->getRow() == 1 ? 0 : 1);
         if (_pages->getParent())
         {
-            _pages->detach();
+            _pages->remove();
         }
         else
         {

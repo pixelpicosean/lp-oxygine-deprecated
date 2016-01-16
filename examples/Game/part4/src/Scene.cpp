@@ -30,7 +30,7 @@ void Scene::show()
 void Scene::hide()
 {
     spTween tween = _view->addTween(Actor::TweenAlpha(0), 300);
-    //detach when done
+    //remove when done
     tween->setDetachActor(true);
     //and call Scene::hidden
     tween->addDoneCallback(CLOSURE(this, &Scene::hidden));

@@ -106,7 +106,7 @@ namespace oxygine
 
     void DeveloperMenu::close(Event* ev)
     {
-        detach();
+        remove();
         //return true;
     }
 }

@@ -72,7 +72,7 @@ namespace oxygine
         if (_content)
         {
             _drag.destroy();
-            _content->detach();
+            _content->remove();
         }
 
         _downTime = 0;

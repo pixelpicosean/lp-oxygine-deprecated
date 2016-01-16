@@ -278,7 +278,7 @@ spActor Board::getView()
 void Board::free()
 {
     _field.clear();
-    _view->detach();
+    _view->remove();
     _view = 0;
     _current = 0;
 }

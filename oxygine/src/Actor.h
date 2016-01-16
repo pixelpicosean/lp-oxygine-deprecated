@@ -56,20 +56,20 @@ namespace oxygine
     class TweenOptions
     {
     public:
-        explicit TweenOptions(timeMS duration = 500) : _duration(duration), _delay(0), _ease(Tween::ease_linear), _loops(1), _twoSides(false), _detach(false) {}
+        explicit TweenOptions(timeMS duration = 500) : _duration(duration), _delay(0), _ease(Tween::ease_linear), _loops(1), _twoSides(false), _remove(false) {}
         TweenOptions& duration(timeMS duration) { _duration = duration; return *this; }
         TweenOptions& delay(timeMS delay) { _delay = delay; return *this; }
         TweenOptions& loops(int loops) { _loops = loops; return *this; }
         TweenOptions& twoSides(bool enabled = true) { _twoSides = enabled; return *this; }
         TweenOptions& ease(Tween::EASE ease) { _ease = ease; return *this; }
-        TweenOptions& detach(bool detach_ = true) { _detach = detach_; return *this; }
+        TweenOptions& remove(bool remove_ = true) { _remove = remove_; return *this; }
 
         timeMS  _duration;
         timeMS  _delay;
         Tween::EASE _ease;
         int     _loops;
         bool    _twoSides;
-        bool    _detach;
+        bool    _remove;
     };
 
 
@@ -227,8 +227,8 @@ namespace oxygine
         void removeChildren();
 
 
-        /**detaches actor from parent and returns parent. return NULL If actor doesn't have parent*/
-        Actor* detach();
+        /**removees actor from parent and returns parent. return NULL If actor doesn't have parent*/
+        Actor* remove();
 
         /**Dispatches an event into the event flow. The event target is the EventDispatcher object upon which the dispatchEvent() method is called.*/
         void dispatchEvent(Event* event);

@@ -777,7 +777,7 @@ namespace oxygine
             OX_ASSERT(insertAfter->getParent() == this);
         }
 
-        actor->detach();
+        actor->remove();
         /*
         OX_ASSERT(actor->getParent() == 0);
         if (actor->getParent())
@@ -802,7 +802,7 @@ namespace oxygine
             OX_ASSERT(insertBefore->getParent() == this);
         }
 
-        actor->detach();
+        actor->remove();
 
         /*
         OX_ASSERT(actor->getParent() == 0);
@@ -841,7 +841,7 @@ namespace oxygine
 
         OX_ASSERT(actor != this);
 
-        actor->detach();
+        actor->remove();
         //assert(actor->_parent == 0 && "child should be removed from previous parent");
 
         int z = actor->getPriority();
@@ -913,7 +913,7 @@ namespace oxygine
     }
 
 
-    Actor* Actor::detach()
+    Actor* Actor::remove()
     {
         Actor* parent = getParent();
         if (parent)

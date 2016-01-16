@@ -166,7 +166,7 @@ namespace oxygine
 
     void TreeInspector::close(Event* ev)
     {
-        detach();
+        remove();
         _getStage()->removeEventListeners(this);
         //return true;
     }
@@ -197,7 +197,7 @@ namespace oxygine
             Vector2 pos = convertPosUp(item, _body.get(), item->getPosition(), false);
 
             item->_prevParent = item->getParent();
-            item->detach();
+            item->remove();
 
             _body->addChild(item);
 
@@ -212,7 +212,7 @@ namespace oxygine
         }
         else
         {
-            item->detach();
+            item->remove();
 
             item->_prevParent->addChild(item);
             item->setScale(1);

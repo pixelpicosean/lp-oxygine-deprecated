@@ -46,7 +46,7 @@ void Jewel::explode()
 void Jewel::exploded(Event*)
 {
     _dead = true;
-    _view->detach();
+    _view->remove();
 }
 
 void Jewel::select()

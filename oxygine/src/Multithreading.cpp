@@ -168,7 +168,7 @@ namespace oxygine
 
             dispatchEvent(&ev);
 
-            detach();
+            remove();
         }
     }
 
