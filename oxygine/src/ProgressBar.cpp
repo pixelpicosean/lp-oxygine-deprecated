@@ -373,20 +373,4 @@ namespace oxygine
     {
         return _direction;
     }
-
-    void ProgressBar::serialize(serializedata* data)
-    {
-        _Sprite::serialize(data);
-        pugi::xml_node node = data->node;
-        data->node.set_name("ProgressBar");
-        data->node.append_attribute("progress").set_value(_progress);
-        data->node.append_attribute("direction").set_value((int)_direction);
-    }
-
-    void ProgressBar::deserialize(const deserializedata* data)
-    {
-        _Sprite::deserialize(data);
-        _direction = (direction)data->node.attribute("direction").as_int();
-        _progress = data->node.attribute("progress").as_float(1.0f);
-    }
 }

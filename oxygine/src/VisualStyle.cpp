@@ -53,23 +53,6 @@ namespace oxygine
         return stream.str();
     }
 
-    void VStyleActor::serialize(serializedata* data)
-    {
-        _Actor::serialize(data);
-        if (_vstyle.getColor() != Color(0xffffffff))
-            data->node.append_attribute("color").set_value(color2hex(_vstyle.getColor()).c_str());
-        //if (_vstyle.getBlendMode() != )
-        //data->node.append_attribute("blend").set_value(color2hex(_vstyle.getColor()).c_str());
-
-        data->node.set_name("VStyleActor");
-    }
-
-    void VStyleActor::deserialize(const deserializedata* data)
-    {
-        _Actor::deserialize(data);
-        setColor(hex2color(data->node.attribute("color").as_string("ffffffff")));
-    }
-
     const Color& VStyleActor::getColor() const
     {
         return _vstyle.getColor();

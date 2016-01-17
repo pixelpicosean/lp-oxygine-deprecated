@@ -22,8 +22,6 @@ namespace oxygine
         TextField();
         ~TextField();
 
-        void serialize(serializedata* data);
-        void deserialize(const deserializedata* data);
 
         /**Returns current text style*/
         const TextStyle&            getStyle() const {return _style;}

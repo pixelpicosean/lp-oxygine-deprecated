@@ -1172,37 +1172,6 @@ namespace oxygine
 
 
 
-    void Actor::serialize(serializedata* data)
-    {
-        //node.set_name("actor");
-        pugi::xml_node node = data->node;
-
-        node.append_attribute("name").set_value(getName().c_str());
-        setAttrV2(node, "pos", getPosition(), Vector2(0, 0));
-        setAttrV2(node, "scale", getScale(), Vector2(1, 1));
-        setAttrV2(node, "size", getSize(), Vector2(0, 0));
-        setAttr(node, "rotation", getRotation(), 0.0f);
-        setAttr(node, "visible", getVisible(), true);
-        setAttr(node, "input", getInputEnabled(), true);
-        setAttr(node, "inputch", getInputChildrenEnabled(), true);
-        setAttr(node, "alpha", getAlpha(), (unsigned char)255);
-        setAttrV2(node, "anchor", getAnchor(), Vector2(0, 0));
-
-        if (data->withChildren)
-        {
-            spActor child = getFirstChild();
-            while (child)
-            {
-                serializedata d = *data;
-                d.node = node.append_child("-");
-                child->serialize(&d);
-                child = child->getNextSibling();
-            }
-        }
-
-        node.set_name("Actor");
-    }
-
     Vector2 attr2Vector2(const char* data)
     {
         Vector2 v;
@@ -1210,81 +1179,6 @@ namespace oxygine
         return v;
     }
 
-    void Actor::deserialize(const deserializedata* data)
-    {
-        pugi::xml_node node = data->node;
-        pugi::xml_attribute attr = node.first_attribute();
-        while (attr)
-        {
-            const char* name = attr.name();
-
-            do
-            {
-                if (!strcmp(name, "name"))
-                {
-                    setName(attr.as_string());
-                    break;
-                }
-                if (!strcmp(name, "pos"))
-                {
-                    setPosition(attr2Vector2(attr.as_string()));
-                    break;
-                }
-                if (!strcmp(name, "anchor"))
-                {
-                    setAnchor(attr2Vector2(attr.as_string()));
-                    break;
-                }
-                if (!strcmp(name, "scale"))
-                {
-                    setScale(attr2Vector2(attr.as_string()));
-                    break;
-                }
-                if (!strcmp(name, "size"))
-                {
-                    setSize(attr2Vector2(attr.as_string()));
-                    break;
-                }
-                if (!strcmp(name, "rotation"))
-                {
-                    setRotation(attr.as_float());
-                    break;
-                }
-                if (!strcmp(name, "visible"))
-                {
-                    setVisible(attr.as_bool());
-                    break;
-                }
-                if (!strcmp(name, "input"))
-                {
-                    setTouchEnabled(attr.as_bool());
-                    break;
-                }
-                if (!strcmp(name, "inputch"))
-                {
-                    setTouchChildrenEnabled(attr.as_bool());
-                    break;
-                }
-                if (!strcmp(name, "alpha"))
-                {
-                    setAlpha(static_cast<unsigned char>(attr.as_int()));
-                    break;
-                }
-            }
-            while (0);
-
-
-            attr = attr.next_attribute();
-        }
-
-        pugi::xml_node item = node.first_child();
-        while (!item.empty())
-        {
-            spActor actor = deserializedata::deser(item, data->factory);
-            addChild(actor);
-            item = item.next_sibling();
-        }
-    }
 
     Vector2 convert_global2local_(Actor* child, Actor* parent, Vector2 pos)
     {

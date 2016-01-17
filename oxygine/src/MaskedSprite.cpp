@@ -58,25 +58,4 @@ namespace oxygine
             _Sprite::render(parentRS);
         }
     }
-
-    void MaskedSprite::serialize(serializedata* data)
-    {
-        _Sprite::serialize(data);
-        data->node.set_name("MaskedSprite");
-    }
-
-    void MaskedSprite::deserialize(const deserializedata* data)
-    {
-        _Sprite::deserialize(data);
-    }
-
-    void MaskedSprite::deserializeLink(const deserializeLinkData* data)
-    {
-        const char* id = data->node.attribute("mask").as_string(0);
-        if (!id)
-            return;
-
-        spSprite mask = data->root->getDescendantT<Sprite>(id, ep_ignore_error);
-        setMask(mask);
-    }
 }

@@ -20,9 +20,6 @@ namespace oxygine
         */
         void setVertices(const void* data, int size, int bformat, bool own);
 
-        void serialize(serializedata* data);
-        void deserialize(const deserializedata* data);
-
         std::string dump(const dumpOptions&) const;
 
     protected:

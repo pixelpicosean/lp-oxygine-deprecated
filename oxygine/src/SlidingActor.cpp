@@ -320,15 +320,4 @@ namespace oxygine
         }
     }
 
-    void SlidingActor::serialize(serializedata* data)
-    {
-        _Actor::serialize(data);
-
-        data->node.set_name("SlidingActor");
-    }
-
-    void SlidingActor::deserialize(const deserializedata* data)
-    {
-        _Actor::deserialize(data);
-    }
 }

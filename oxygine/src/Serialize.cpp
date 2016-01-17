@@ -37,7 +37,6 @@ namespace oxygine
         deserializeLinkData data;
         data.node = node;
         data.root = root;
-        actor->deserializeLink(&data);
 
         spActor child = actor->getFirstChild();
         node = node.first_child();
@@ -61,7 +60,6 @@ namespace oxygine
         d.factory = factory;
         const char* name = node.name();
         spActor actor = factory->create(name);
-        actor->deserialize(&d);
 
         return actor;
     }

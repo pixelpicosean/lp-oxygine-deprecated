@@ -26,9 +26,6 @@ namespace oxygine
 
         void handleEvent(Event* event);
 
-        void serialize(serializedata* data);
-        void deserialize(const deserializedata* data);
-
     protected:
 
         bool _culling;

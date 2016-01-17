@@ -42,8 +42,6 @@ namespace oxygine
 
         bool                    isOn(const Vector2& localPosition);
 
-        void serialize(serializedata* data);
-        void deserialize(const deserializedata* data);
 
         typedef oxygine::TweenAnim TweenAnim;
         std::string dump(const dumpOptions&) const;

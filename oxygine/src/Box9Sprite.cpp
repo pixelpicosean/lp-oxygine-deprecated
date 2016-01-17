@@ -329,20 +329,4 @@ namespace oxygine
             }
         }
     }
-
-    void Box9Sprite::serialize(serializedata* data)
-    {
-        _Sprite::serialize(data);
-        setAttrV2(data->node, "size", getSize(), Vector2(0, 0));
-        data->node.set_name("Box9Sprite");
-    }
-
-    Vector2 attr2Vector2(const char* data);
-
-    void Box9Sprite::deserialize(const deserializedata* data)
-    {
-        _Sprite::deserialize(data);
-
-        setSize(attr2Vector2(data->node.attribute("size").as_string()));
-    }
 }

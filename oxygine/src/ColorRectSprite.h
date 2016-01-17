@@ -13,9 +13,6 @@ namespace oxygine
         ColorRectSprite();
         ~ColorRectSprite();
 
-        void serialize(serializedata* data);
-        void deserialize(const deserializedata* data);
-
         void doRender(const RenderState& rs);
 
     private:

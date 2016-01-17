@@ -35,9 +35,6 @@ namespace oxygine
 
         std::string dump(const dumpOptions&) const;
 
-        void serialize(serializedata* data);
-        void deserialize(const deserializedata* data);
-
         virtual RectF getDestRect() const;
 
     protected:

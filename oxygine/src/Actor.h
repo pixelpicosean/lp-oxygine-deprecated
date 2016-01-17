@@ -5,7 +5,6 @@
 #include "math/Rect.h"
 #include "math/AffineTransform.h"
 #include "utils/intrusive_list.h"
-#include "Serializable.h"
 #include "EventDispatcher.h"
 #include "TouchEvent.h"
 #include "Tween.h"
@@ -73,7 +72,7 @@ namespace oxygine
     };
 
 
-    class Actor : public EventDispatcher, public intrusive_list_item<spActor>, public Serializable
+    class Actor : public EventDispatcher, public intrusive_list_item<spActor>
     {
         typedef intrusive_list_item<spActor> intr_list;
     public:
@@ -285,9 +284,6 @@ namespace oxygine
         typedef Property<float, float, Actor, &Actor::getScaleY, &Actor::setScaleY>                             TweenScaleY;
         typedef Property<unsigned char, unsigned char, Actor, &Actor::getAlpha, &Actor::setAlpha>               TweenAlpha;
 
-
-        void serialize(serializedata*);
-        void deserialize(const deserializedata*);
 
         /**Returns detailed actor information. Used for debug purposes. */
         virtual std::string dump(const dumpOptions& opt) const;

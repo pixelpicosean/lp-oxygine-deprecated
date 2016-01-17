@@ -24,19 +24,6 @@ namespace oxygine
         _Sprite::copyFrom(src, opt);
     }
 
-    void Polygon::serialize(serializedata* data)
-    {
-        _Sprite::serialize(data);
-
-        pugi::xml_node node = data->node;
-        node.set_name("Polygon");
-    }
-
-    void Polygon::deserialize(const deserializedata* data)
-    {
-        _Sprite::deserialize(data);
-    }
-
     std::string Polygon::dump(const dumpOptions& options) const
     {
         std::stringstream stream;

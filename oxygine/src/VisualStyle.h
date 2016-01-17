@@ -33,8 +33,6 @@ namespace oxygine
         DECLARE_COPYCLONE_NEW(VStyleActor);
         VStyleActor() {}
 
-        void serialize(serializedata* data);
-        void deserialize(const deserializedata* data);
 
         blend_mode              getBlendMode() const {return _vstyle.getBlendMode();}
         const Color&            getColor() const;

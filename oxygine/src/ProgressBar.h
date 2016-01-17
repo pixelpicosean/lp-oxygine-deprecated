@@ -37,9 +37,6 @@ namespace oxygine
 
         std::string dump(const dumpOptions&) const;
 
-        void serialize(serializedata* data);
-        void deserialize(const deserializedata* data);
-
         typedef Property<float, float, ProgressBar, &ProgressBar::getProgress, &ProgressBar::setProgress> TweenProgress;
 
     private:

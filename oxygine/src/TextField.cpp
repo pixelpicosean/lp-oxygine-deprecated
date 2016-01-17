@@ -357,39 +357,4 @@ namespace oxygine
 
         root->draw(dc);
     }
-
-    void TextField::serialize(serializedata* data)
-    {
-        _VStyleActor::serialize(data);
-        pugi::xml_node node = data->node;
-
-        TextStyle def;
-
-        if (!_text.empty())
-            node.append_attribute("text").set_value(_text.c_str());
-        setAttr(node, "fontsize2scale", _style.fontSize2Scale, def.fontSize2Scale);
-        setAttr(node, "linesOffset", _style.linesOffset, def.linesOffset);
-        setAttr(node, "valign", _style.vAlign, def.vAlign);
-        setAttr(node, "halign", _style.hAlign, def.hAlign);
-        setAttr(node, "multiline", _style.multiline, def.multiline);
-        setAttr(node, "breakLongWords", _style.breakLongWords, def.breakLongWords);
-        node.set_name("TextField");
-    }
-
-    void TextField::deserialize(const deserializedata* data)
-    {
-        _VStyleActor::deserialize(data);
-        pugi::xml_node node = data->node;
-
-        TextStyle def;
-
-        _style.vAlign = (TextStyle::VerticalAlign)node.attribute("valign").as_int(def.vAlign);
-        _style.hAlign = (TextStyle::HorizontalAlign)node.attribute("halign").as_int(def.hAlign);
-        _style.multiline = node.attribute("multiline").as_bool(def.multiline);
-        _style.breakLongWords = node.attribute("breakLongWords").as_bool(def.breakLongWords);
-        _style.fontSize2Scale = node.attribute("fontsize2scale").as_int(def.fontSize2Scale);
-        _style.linesOffset = node.attribute("linesOffset").as_int(def.linesOffset);
-        needRebuild();
-        setText(node.attribute("text").as_string());
-    }
 }

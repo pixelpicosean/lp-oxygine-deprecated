@@ -17,10 +17,6 @@ namespace oxygine
 
         void setMask(spSprite, bool useRChannel = false);
 
-        void serialize(serializedata* data);
-        void deserialize(const deserializedata* data);
-        void deserializeLink(const deserializeLinkData*);
-
     protected:
         void render(const RenderState& parentRS);
 
