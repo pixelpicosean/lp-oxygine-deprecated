@@ -37,8 +37,6 @@ namespace oxygine
 
         std::string dump(const dumpOptions&) const;
 
-        typedef Property<float, float, ProgressBar, &ProgressBar::getProgress, &ProgressBar::setProgress> TweenProgress;
-
     private:
         void doRender(const RenderState& rs);
 

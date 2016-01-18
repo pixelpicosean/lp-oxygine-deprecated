@@ -106,8 +106,6 @@ public:
         txt->setText("1234567890");
         txt->setPosition(getStage()->getSize() / 2);
         txt->setOuterColor(Color::White);
-        txt->addTween(ShaderTextField::TweenOuterColor(Color::Black), 4000, -1, true, 2000);
-        txt->addTween(TextField::TweenColor(Color::Magenta), 5000, -1, true);
     }
 
     ~TestColorFont()

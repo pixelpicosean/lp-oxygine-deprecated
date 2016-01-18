@@ -14,7 +14,6 @@ public:
     TestPolygon() : _num(3)
     {
         poly = new oxygine::Polygon;
-        poly->addTween(Actor::TweenRotation(MATH_PI * 2), 16000, -1);
         poly->setPosition(content->getSize() / 2);
 
         ResAnim* rs = resources.getResAnim("tiled");

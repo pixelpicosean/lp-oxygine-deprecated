@@ -223,12 +223,9 @@ void Test::notify(std::string txt, int time)
     sprite->setAlpha(0);
 
     spTweenQueue tq = new TweenQueue;
-    tq->add(Actor::TweenAlpha(255), 300, 1, false, 0, Tween::ease_inExpo);
-    tq->add(Actor::TweenAlpha(0), 300, 1, false, 1200);
     tq->setDetachActor(true);
     tq->addDoneCallback(CLOSURE(this, &Test::notifyDone));
 
-    sprite->addTween(tq);
     sprite->addTo(ui);
     sprite->setPosition(2.0f, getHeight() - 100.0f - N * sprite->getHeight() * 1.1f);
 

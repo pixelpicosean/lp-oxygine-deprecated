@@ -7,7 +7,6 @@
 #include "utils/intrusive_list.h"
 #include "EventDispatcher.h"
 #include "TouchEvent.h"
-#include "Tween.h"
 
 
 
@@ -52,26 +51,6 @@ namespace oxygine
     type* type::clone(cloneOptions opt) const {type *tp = new type(); tp->copyFrom(*this, opt); return tp;}
 
 
-    class TweenOptions
-    {
-    public:
-        explicit TweenOptions(timeMS duration = 500) : _duration(duration), _delay(0), _ease(Tween::ease_linear), _loops(1), _twoSides(false), _remove(false) {}
-        TweenOptions& duration(timeMS duration) { _duration = duration; return *this; }
-        TweenOptions& delay(timeMS delay) { _delay = delay; return *this; }
-        TweenOptions& loops(int loops) { _loops = loops; return *this; }
-        TweenOptions& twoSides(bool enabled = true) { _twoSides = enabled; return *this; }
-        TweenOptions& ease(Tween::EASE ease) { _ease = ease; return *this; }
-        TweenOptions& remove(bool remove_ = true) { _remove = remove_; return *this; }
-
-        timeMS  _duration;
-        timeMS  _delay;
-        Tween::EASE _ease;
-        int     _loops;
-        bool    _twoSides;
-        bool    _remove;
-    };
-
-
     class Actor : public EventDispatcher, public intrusive_list_item<spActor>
     {
         typedef intrusive_list_item<spActor> intr_list;
@@ -101,13 +80,6 @@ namespace oxygine
         /**search child by name and cast it to other class*/
         template<class T>
         T*                  getChildT(const std::string& name, error_policy ep = ep_show_error) const { return safeCast<T*>(getChild(name, ep).get()); }
-
-        /**search tween by name*/
-        spTween             getTween(const std::string& name, error_policy ep = ep_show_error);
-        /**returns first tween in actor*/
-        spTween             getFirstTween() const {return _tweens._first;}
-        /**returns last tween in actor*/
-        spTween             getLastTween() const {return _tweens._last;}
 
         const Vector2&      getAnchor() const {return _anchor;}
         float               getAnchorX() const {return _anchor.x;}
@@ -234,17 +206,6 @@ namespace oxygine
 
         virtual void updateState() {}
 
-        spTween addTween(spTween);
-        spTween addTween2(spTween, const TweenOptions& opt);
-
-        template<class Prop>
-        spTween addTween(const Prop& prop, timeMS duration, int loops = 1, bool twoSides = false, timeMS delay = 0, Tween::EASE ease = Tween::ease_linear)
-        {return addTween(createTween(prop, duration, loops, twoSides, delay, ease));}
-
-        template<class Prop>
-        spTween addTween(const Prop& prop, const TweenOptions& opt)
-        {return addTween(createTween2(prop, opt));}
-
         /**short syntax version of actor->addEventListener(TouchEvent::CLICK, ...);*/
         int addClickListener(const EventCallback& cb) { return addEventListener(TouchEvent::CLICK, cb); }
         /**short syntax version of actor->addEventListener(TouchEvent::TOUCH_DOWN, ...);*/
@@ -252,12 +213,7 @@ namespace oxygine
         /**short syntax version of actor->addEventListener(TouchEvent::TOUCH_UP, ...);*/
         int addTouchUpListener(const EventCallback& cb) { return addEventListener(TouchEvent::TOUCH_UP, cb); }
 
-        void removeTween(spTween);
-        void removeTweensByName(const std::string& name);
-        /**remove all tweens and call completes them if callComplete == true*/
-        void removeTweens(bool callComplete = false);
-
-        /**Updates this actor, children and all tweens.*/
+        /**Updates this actor, children.*/
         virtual void update(const UpdateState& us);
         /**Renders this actor and children.*/
         virtual void render(const RenderState& rs);
@@ -268,21 +224,6 @@ namespace oxygine
         Vector2 global2local(const Vector2& pos) const;
         //converts local position to parent space
         Vector2 local2global(const Vector2& pos) const;
-
-
-        typedef Property2Args<float, Vector2, const Vector2&, Actor, &Actor::getPosition, &Actor::setPosition>  TweenPosition;
-        typedef Property<float, float, Actor, &Actor::getX, &Actor::setX>                                       TweenX;
-        typedef Property<float, float, Actor, &Actor::getY, &Actor::setY>                                       TweenY;
-        typedef Property<float, float, Actor, &Actor::getWidth, &Actor::setWidth>                               TweenWidth;
-        typedef Property<float, float, Actor, &Actor::getHeight, &Actor::setHeight>                             TweenHeight;
-        typedef Property2Args2<float, Vector2, Vector2, const Vector2&, Actor, &Actor::getSize, &Actor::setSize>TweenSize;
-        typedef Property<float, float, Actor, &Actor::getRotation, &Actor::setRotation>                         TweenRotation;
-        typedef Property<float, float, Actor, &Actor::getRotationDegrees, &Actor::setRotationDegrees>           TweenRotationDegrees;
-        typedef Property2Args1Arg<float, Vector2, const Vector2&, Actor, &Actor::getScale, &Actor::setScale>    TweenScale;
-        typedef Property2Args1Arg<float, Vector2, const Vector2&, Actor, &Actor::getAnchor, &Actor::setAnchor>  TweenAnchor;
-        typedef Property<float, float, Actor, &Actor::getScaleX, &Actor::setScaleX>                             TweenScaleX;
-        typedef Property<float, float, Actor, &Actor::getScaleY, &Actor::setScaleY>                             TweenScaleY;
-        typedef Property<unsigned char, unsigned char, Actor, &Actor::getAlpha, &Actor::setAlpha>               TweenAlpha;
 
 
         /**Returns detailed actor information. Used for debug purposes. */
@@ -313,7 +254,6 @@ namespace oxygine
         virtual void sizeChanged(const Vector2& size);
         RectF   getScreenSpaceDestRect(const Renderer::transform&) const;
         Actor*  _getDescendant(const std::string& name);
-        spTween _addTween(spTween tween, bool rel);
 
         bool prepareRender(RenderState& rs, const RenderState& parentRS);
         void completeRender(const RenderState& rs);
@@ -351,9 +291,6 @@ namespace oxygine
         spClock _clock;
         Actor* _parent;
 
-        typedef intrusive_list<spTween> tweens;
-        tweens _tweens;
-
         children _children;
 
         pointer_index _pressed;
@@ -388,19 +325,6 @@ namespace oxygine
     Renderer::transform getGlobalTransform2(spActor child, Actor* parent = 0);
 
     void    changeParentAndSavePosition(spActor mutualParent, spActor actor, spActor newParent);
-
-
-    /** A TweenDummy class
-     *  doing nothing, could be used for calling your callback after timeout
-     */
-    class TweenDummy
-    {
-    public:
-        typedef Actor type;
-
-        void init(Actor&) {}
-        void update(Actor&, float p, const UpdateState& us) {}
-    };
 }
 
 

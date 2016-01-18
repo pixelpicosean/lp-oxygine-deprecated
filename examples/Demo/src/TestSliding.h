@@ -101,8 +101,6 @@ public:
 
         float x = content->getX();
         x = int(x / 166) * 166.0f;
-        Vector2 dest(x, y);
-        content->addTween(Actor::TweenPosition(dest), 100);
     }
 
     void slideEnd(Event* event)
@@ -120,6 +118,5 @@ public:
     void testClick(Event* event)
     {
         notify("clicked");
-        _button->addTween(Sprite::TweenColor(Color::Red), 300, 1, true);
     }
 };

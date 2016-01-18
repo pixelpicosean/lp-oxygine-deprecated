@@ -343,9 +343,6 @@ namespace oxygine
 #ifdef OXYGINE_DEBUG_T2P
         STDRenderer::showTexel2PixelErrors(_showTexel2PixelErrors);
         spActor btn = getChild("t2p");
-        btn->removeTweens(true);
-        if (show)
-            btn->addTween(Actor::TweenAlpha(0), 300, 999999, true);
 #endif
     }
 
@@ -357,9 +354,6 @@ namespace oxygine
             _getStage()->addEventListener(TouchEvent::TOUCH_DOWN, CLOSURE(this, &DebugActor::onEvent));
 
         spActor btn = getChild("finger");
-        btn->removeTweens(true);
-        if (show)
-            btn->addTween(Actor::TweenAlpha(0), 300, 999999, true);
     }
 
     void DebugActor::onDAEvent(Event* ev)
@@ -377,7 +371,6 @@ namespace oxygine
         //cr->setAlpha(100);
         cr->setColor(Color(rand() % 255, rand() % 255, rand() % 255, 0));
         cr->setSize(actor->getSize());
-        cr->addTween(ColorRectSprite::TweenColor(Color(Color::White, 200)), 700, 1, true, 0, Tween::ease_inCubic)->setDetachActor(true);
         actor->addChild(cr);
         std::string dmp = actor->dump(0);
         log::messageln("touched actor:\n%s", dmp.c_str());

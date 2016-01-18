@@ -52,7 +52,5 @@ public:
         {
             bar->setDirection(ProgressBar::dir_radial_cw);
         }
-
-        bar->addTween(ProgressBar::TweenProgress(1.0f), 1000);
     }
 };

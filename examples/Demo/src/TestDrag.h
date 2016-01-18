@@ -38,7 +38,6 @@ public:
 
             float angle = scalar::randFloat(0, (float)MATH_PI * 2);
             sprite->setRotation(angle);
-            sprite->addTween(Actor::TweenRotation(MATH_PI * 2 + angle), 30000, -1);
             sprite->setScale(scalar::randFloat(1.0f, 1.5f));
             sprite->setAnchor(0.5f, 0.5f);
 
@@ -73,7 +72,6 @@ public:
                     spSprite c = new Sprite;
                     c->setAnchor(0.5f, 0.5f);
                     c->setResAnim(resources.getResAnim("snow"));
-                    c->addTween(Actor::TweenAlpha(0), 300)->setDetachActor(true);
                     Vector2 pos = convert_local2global(a, content, contact);
                     c->setPosition(pos);
                     c->addTo(contacts);
@@ -88,16 +86,12 @@ public:
 
         //show clicked sprite on top
         actor->setPriority(priority++);
-
-        spTween t = actor->addTween(Sprite::TweenColor(Color::Red), 300, -1, true);
-        t->setName("color");
     }
 
     void onMouseUp(Event* event)
     {
         spSprite actor = safeSpCast<Sprite>(event->currentTarget);
 
-        actor->removeTween(actor->getTween("color"));
         actor->setColor(Color::White);
     }
 };
@@ -158,12 +152,6 @@ public:
             return;
 
         dragging->setColor(Color::White);
-        spTween t;
-        if (event->target == basket)
-            t = dragging->addTween(Actor::TweenPosition(basket->getPosition() - basket->getSize() / 2), 500);
-        else
-            t = dragging->addTween(Actor::TweenPosition(ball->getPosition() - ball->getSize() / 2), 500);
-        t->setDetachActor(true);
         dragging = 0;
     }
 
@@ -180,9 +168,6 @@ public:
         if (!touchedBy)
         {
             txt->setText("Drag left object and drop on right object");
-            if (!ball->getTween("scale", ep_ignore_error))
-                ball->addTween(Actor::TweenScale(1.1f), 500, -1, true)->setName("scale");
-            basket->removeTweens();
             return;
         }
 
@@ -192,8 +177,6 @@ public:
         timeLeft -= us.dt;
         if (timeLeft <= 0)
         {
-            ball->removeTweens();
-            basket->addTween(Actor::TweenScale(1.1f), 500, -1, true);
             txt->setText("Now drop it on right object");
 
             timeLeft = 0;

@@ -28,8 +28,6 @@ public:
             sprite->setPosition(pos);
             //sprite->setAlpha(0);
             sprite->setScale(0.5f);
-            sprite->addTween(Actor::TweenScale(1.5f), 500, 1, false, 0, Tween::ease_inBack);
-            sprite->addTween(Actor::TweenAlpha(0), TweenOptions(500).delay(800).remove(true));
             actor.addChild(sprite);
             //break;
         }
@@ -57,13 +55,10 @@ public:
         //sprite->setAnchor(0.5f, 0.5f);
         sprite->setPosition(content->getSize() / 2 - sprite->getSize() / 2);
 
-        sprite->addTween(TweenShine::create(10, 300));
-
         addButton("shine", "shine");
     }
 
     void clicked(string id)
     {
-        sprite->addTween(TweenShine::create(10, 300));
     }
 };

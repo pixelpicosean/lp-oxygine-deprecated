@@ -42,8 +42,6 @@ namespace oxygine
                                                arg_color = Color(Color::White, 255),
                                                arg_addTo = this);
 
-            rect->addTween(Sprite::TweenColor(Color(Color::White, 0)), 4000, -1, true);
-
             char path[255];
             path::normalize(t->getName().c_str(), path);
 

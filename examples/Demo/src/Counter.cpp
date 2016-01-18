@@ -30,21 +30,6 @@ public:
         return _current;
     }
 
-    spTween add()
-    {
-        OX_ASSERT(_running == false);
-
-        _running = true;
-        int next = (_current + 1) % 10;
-        spActor actor = _sprites[next];
-        push(actor);
-        float offset = getHeight();
-        spTween tween = _line->addTween(Actor::TweenY(-offset), 500, 1, false, 0, Tween::ease_inOutCubic);
-        tween->setDoneCallback(CLOSURE(this, &Number::done));
-
-        return tween;
-    }
-
     void done(Event*)
     {
         _running = false;
@@ -74,7 +59,6 @@ public:
     {
         _running = false;
         _line->removeChildren();
-        _line->removeTweens();
         _line->setPosition(0, 0);
         _current = 0;
 
@@ -147,13 +131,6 @@ void Counter::add()
     _running = true;
 
     spNumber n = _numbers[0];
-    while (n->getCurrent() == 9)
-    {
-        n = _numbers[n->getPos() + 1];
-        n->add();
-    }
-
-    _numbers[0]->add()->addDoneCallback(CLOSURE(this, &Counter::added));
 }
 
 void Counter::added(Event* e)

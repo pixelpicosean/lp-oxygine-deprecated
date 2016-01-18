@@ -48,8 +48,5 @@ public:
         text->setHeight(getHeight());
         text->setWidth(300);
         text->setX(getWidth() / 2 - 150);
-
-        text->addTween(TweenText("The quick brown fox jumps over the lazy dog. 1234567890. The quick brown fox jumps over the lazy dog. 1234567890. The quick brown fox jumps over the lazy dog. 1234567890. The quick brown fox jumps over the lazy dog. 1234567890. "),
-                       8000, -1, true);
     }
 };

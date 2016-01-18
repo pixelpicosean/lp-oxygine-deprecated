@@ -25,10 +25,6 @@ public:
         sprite->setHorizontalMode(Box9Sprite::STRETCHING);
 
 
-        sprite->addTween(Actor::TweenWidth(getWidth() - sprite->getX() - 190), 5000, -1, true);
-        sprite->addTween(Actor::TweenHeight(getHeight() - sprite->getY() - 10), 5000, -1, true, 2500);
-
-
         //you could also define guides from xml
         //<image file="box9.png" guideX1="50" guideX2="210" guideY1="50" guideY2="125" />
         sprite->setGuides(40, 160, 40, 160);

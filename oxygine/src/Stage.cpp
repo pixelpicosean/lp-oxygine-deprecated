@@ -5,6 +5,7 @@
 #include "RenderState.h"
 #include "STDRenderer.h"
 #include "Clock.h"
+#include "UpdateState.h"
 #include <sstream>
 
 #ifdef OXYGINE_SDL

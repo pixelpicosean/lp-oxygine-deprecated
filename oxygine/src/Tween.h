@@ -232,4 +232,24 @@ namespace oxygine
     }
 
     std::string ease2String(Tween::EASE ease);
+
+    class TweenOptions
+    {
+    public:
+      explicit TweenOptions(timeMS duration = 500) : _duration(duration), _delay(0), _ease(Tween::ease_linear), _loops(1), _twoSides(false), _remove(false) {}
+      TweenOptions& duration(timeMS duration) { _duration = duration; return *this; }
+      TweenOptions& delay(timeMS delay) { _delay = delay; return *this; }
+      TweenOptions& loops(int loops) { _loops = loops; return *this; }
+      TweenOptions& twoSides(bool enabled = true) { _twoSides = enabled; return *this; }
+      TweenOptions& ease(Tween::EASE ease) { _ease = ease; return *this; }
+      TweenOptions& remove(bool remove_ = true) { _remove = remove_; return *this; }
+
+      timeMS  _duration;
+      timeMS  _delay;
+      Tween::EASE _ease;
+      int     _loops;
+      bool    _twoSides;
+      bool    _remove;
+    };
+
 }

@@ -32,7 +32,6 @@ public:
         spr->addTo(clp);
         spr->setAnchor(0.5f, 0.5f);
         spr->setScale(sc);
-        spr->addTween(Actor::TweenRotation(MATH_PI * 2), 5000, -1);
 
         return clp;
     }
@@ -43,14 +42,11 @@ public:
 
         int new_priority = actor->getParent()->getLastChild()->getPriority() + 1;
         actor->setPriority(new_priority);
-
-        actor->addTween(Sprite::TweenColor(Color(Color::Red, 255)), 300, -1, true);
     }
 
     void onMouseUp(Event* event)
     {
         spSprite actor = safeSpCast<Sprite>(event->currentTarget);
-        actor->removeTweens();
         actor->setColor(Color::White);
     }
 };

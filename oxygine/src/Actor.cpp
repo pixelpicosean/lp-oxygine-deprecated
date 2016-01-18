@@ -4,7 +4,7 @@
 #include "res/ResAnim.h"
 #include "Stage.h"
 #include "Clock.h"
-#include "Tween.h"
+#include "UpdateState.h"
 #include "math/AffineTransform.h"
 #include <sstream>
 #include <typeinfo>
@@ -15,7 +15,6 @@
 #include <stdio.h>
 #include "Serialize.h"
 
-//#include ""
 
 namespace oxygine
 {
@@ -91,8 +90,6 @@ namespace oxygine
     Actor::~Actor()
     {
         //printf("Actor::~Actor %s\n", getName().c_str());
-        removeTweens();
-        removeChildren();
         if (_getStage())
         {
             //OX_ASSERT(_getStage()->hasEventListeners(this) == false);
@@ -184,17 +181,6 @@ namespace oxygine
 
         if (getRotation() != 0.0f)
             stream << " rot=" << getRotation() / MATH_PI * 360.0f << "";
-
-        int tweensCount = 0;
-        spTween t = _tweens._first;
-        while (t)
-        {
-            t = t->getNextSibling();
-            tweensCount++;
-        }
-
-        if (tweensCount)
-            stream << " tweens=" << tweensCount << "";
 
         if (getListenersCount())
             stream << " listeners=" << (int)getListenersCount() << "";
@@ -923,18 +909,6 @@ namespace oxygine
 
     void Actor::internalUpdate(const UpdateState& us)
     {
-        spTween tween = _tweens._first;
-        while (tween)
-        {
-            spTween tweenNext = tween->getNextSibling();
-
-            if (tween->getParentList())
-                tween->update(*this, us);
-            if (tween->isDone() && tween->getParentList())
-                _tweens.remove(tween);
-            tween = tweenNext;
-        }
-
         if (_cbDoUpdate)
             _cbDoUpdate(us);
         doUpdate(us);
@@ -1087,86 +1061,6 @@ namespace oxygine
     RectF Actor::getDestRect() const
     {
         return calcDestRectF(RectF(Vector2(0, 0), getSize()), getSize());
-    }
-
-    spTween Actor::_addTween(spTween tween, bool rel)
-    {
-        OX_ASSERT(tween);
-        if (!tween)
-            return 0;
-
-        tween->start(*this);
-        _tweens.append(tween);
-
-        return tween;
-    }
-
-    spTween Actor::addTween(spTween tween)
-    {
-        return _addTween(tween, false);
-    }
-
-    spTween Actor::addTween2(spTween tween, const TweenOptions& opt)
-    {
-        tween->init2(opt);
-        return _addTween(tween, false);
-    }
-
-    spTween Actor::getTween(const std::string& name, error_policy ep)
-    {
-        spTween tween = _tweens._first;
-        while (tween)
-        {
-            if (tween->isName(name))
-                return tween;
-            tween = tween->getNextSibling();
-        }
-
-        handleErrorPolicy(ep, "can't find tween: %s", name.c_str());
-        return 0;
-    }
-
-    void Actor::removeTween(spTween v)
-    {
-        OX_ASSERT(v);
-        if (!v)
-            return;
-
-        if (v->getParentList() == &_tweens)
-        {
-            v->setClient(0);
-            _tweens.remove(v);
-        }
-    }
-
-    void Actor::removeTweens(bool callComplete)
-    {
-        spTween t = _tweens._first;
-        while (t)
-        {
-            spTween c = t;
-            t = t->getNextSibling();
-
-            if (callComplete)
-                c->complete();
-            else
-                removeTween(c);
-        }
-    }
-
-    void Actor::removeTweensByName(const std::string& name)
-    {
-        spTween t = _tweens._first;
-        while (t)
-        {
-            spTween c = t;
-            t = t->getNextSibling();
-
-            if (c->isName(name))
-            {
-                removeTween(c);
-            }
-        }
     }
 
 

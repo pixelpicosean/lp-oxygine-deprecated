@@ -86,39 +86,6 @@ public:
                 child = child->getNextSibling();
             }
         }
-
-        if (id == "animate")
-        {
-            spActor child = content->getFirstChild();
-            while (child)
-            {
-                spTween t = 0;
-                if (!_tweenAnim)
-                    t = createTween(TweenAnim(resources.getResAnim("anim")), 500, -1);
-                else if (!_tweenRot)
-                    t = createTween(Actor::TweenRotation((float)MATH_PI * 2.0f), 3000, -1);
-                else if (!_tweenScale)
-                    t = createTween(Actor::TweenScale(Vector2(0.2f, 0.2f)), 3000, -1, true);
-
-
-                if (t)
-                    child->addTween(t);
-                child = child->getNextSibling();
-            }
-
-            if (!_tweenAnim)
-                _tweenAnim = true;
-            else
-            {
-                if (!_tweenRot)
-                    _tweenRot = true;
-                else if (!_tweenScale)
-                {
-                    updateText(id, "");
-                    _tweenScale = true;
-                }
-            }
-        }
     }
 
 };

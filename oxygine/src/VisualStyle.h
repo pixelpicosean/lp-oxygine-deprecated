@@ -40,8 +40,6 @@ namespace oxygine
         void                    setColor(const Color& color);
         void                    setBlendMode(blend_mode mode) {_vstyle.setBlendMode(mode);}
 
-        typedef Property<Color, const Color&, VStyleActor, &VStyleActor::getColor, &VStyleActor::setColor> TweenColor;
-
     protected:
         VisualStyle _vstyle;
     };
